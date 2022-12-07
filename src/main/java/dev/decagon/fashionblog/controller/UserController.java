@@ -3,7 +3,7 @@ package dev.decagon.fashionblog.controller;
 import dev.decagon.fashionblog.dto.AddUserDto;
 import dev.decagon.fashionblog.dto.LoginUserDto;
 import dev.decagon.fashionblog.service.UserService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

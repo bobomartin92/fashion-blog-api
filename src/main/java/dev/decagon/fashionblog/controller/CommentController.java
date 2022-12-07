@@ -3,7 +3,7 @@ package dev.decagon.fashionblog.controller;
 import dev.decagon.fashionblog.dto.CreateCommentDto;
 import dev.decagon.fashionblog.model.Comment;
 import dev.decagon.fashionblog.service.CommentService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

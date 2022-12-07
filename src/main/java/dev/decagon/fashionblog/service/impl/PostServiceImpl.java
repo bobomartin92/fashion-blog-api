@@ -11,7 +11,7 @@ import dev.decagon.fashionblog.repository.LikeRepository;
 import dev.decagon.fashionblog.repository.PostRepository;
 import dev.decagon.fashionblog.repository.UserRepository;
 import dev.decagon.fashionblog.service.PostService;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;

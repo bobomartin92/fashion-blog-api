@@ -4,7 +4,7 @@ import dev.decagon.fashionblog.dto.CreatePostDto;
 import dev.decagon.fashionblog.dto.UpdatePostDto;
 import dev.decagon.fashionblog.model.Post;
 import dev.decagon.fashionblog.service.PostService;
-import jakarta.validation.Valid;
+import javax.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
