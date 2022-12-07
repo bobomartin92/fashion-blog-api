@@ -79,6 +79,7 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>fashion-blog-api</finalName>
     </build>
 
 </project>
