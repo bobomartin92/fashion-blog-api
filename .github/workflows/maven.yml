@@ -14,26 +14,10 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  POSTGRESQL_DB: fashion_blog_db
-  POSTGRESQL_USER: postgres
-  POSTGRESQL_PASSWORD: password
-
 jobs:
   build:
 
     runs-on: ubuntu-latest
-
-    services:
-      postgres:
-        image: postgres:13.1
-        env:
-          POSTGRES_DB: ${{ env.POSTGRESQL_DB }}
-          POSTGRES_USER: ${{ env.POSTGRESQL_USER }}
-          POSTGRES_PASSWORD: ${{ env.POSTGRESQL_PASSWORD }}
-        ports:
-          - 5432:5432
-        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
     - uses: actions/checkout@v3
@@ -46,12 +30,30 @@ jobs:
     - name: Build with Maven
       run: mvn clean install
 
-    - name: Build & push Docker image
-      uses: mr-smithers-excellent/docker-build-push@v5
+#    - name: Build & push Docker image
+#      uses: mr-smithers-excellent/docker-build-push@v5
+#      with:
+#        image: bobomartin/fashion-blog-api
+#        tags: latest
+#        registry: docker.io
+#        dockerfile: Dockerfile
+#        username: ${{ secrets.DOCKER_USERNAME }}
+#        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Set up QEMU
+      uses: docker/setup-qemu-action@v2
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v2
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
       with:
-        image: bobomartin/fashion-blog-api
-        tags: latest
-        registry: docker.io
-        dockerfile: Dockerfile
-        username: ${{ secrets.DOCKER_USERNAME }}
-        password: ${{ secrets.DOCKER_PASSWORD }}
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Build and push
+      uses: docker/build-push-action@v3
+      with:
+        push: true
+        tags: bobomartin/fashion-blog-api:latest

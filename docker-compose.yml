@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  app:
+    container_name: fashion-blog-api
+    build: ./
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/fashion_blog_db
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+  db:
+    image: postgres:alpine
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=fashion_blog_db
+    ports:
+      - "5432:5432"
